@@ -1,0 +1,13 @@
+{
+  "name": "socketiochatapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Akash Rajpurohit <akash009.dev@gmail.com>",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
