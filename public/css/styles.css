@@ -40,6 +40,11 @@ button:disabled {
   background: #698ea5;
 }
 
+a {
+  text-decoration: none;
+  color: #698ea5;
+}
+
 .centered-form {
   display: flex;
   align-items: center;
