@@ -233,11 +233,18 @@ a {
 }
 
 .feedback {
-  position: absolute;
+  position: fixed;
   top: 90%;
   left: 5%;
   color: white;
   transform: translate(0%, 0%);
+}
+
+#feedback p {
+  color: #16a085;
+  padding: 10px 0px;
+  margin: 0 15px;
+  font-size: 20px;
 }
 
 .mail-feedback {

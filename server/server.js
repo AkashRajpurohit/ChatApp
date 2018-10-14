@@ -73,6 +73,15 @@ io.on("connection", socket => {
     callback();
   });
 
+  socket.on("typing", message => {
+    const user = users.getUser(socket.id);
+    if (user && isRealString(message.text)) {
+      socket.broadcast
+        .to(user.room)
+        .emit("isTypingMessage", generateMessage(user.name, message.text));
+    }
+  });
+
   socket.on("disconnect", () => {
     const user = users.removeUser(socket.id);
 

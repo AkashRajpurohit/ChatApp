@@ -1,5 +1,8 @@
 const socket = io();
 
+let messageTextbox = $("[name=message]");
+let feedback = $("#feedback");
+
 function scrollToBottom() {
   // Selectors
   let messages = $("#messages");
@@ -55,6 +58,7 @@ socket.on("newMessage", function(message) {
   });
 
   $("#messages").append(html);
+  feedback.html("");
   scrollToBottom();
 });
 
@@ -68,13 +72,26 @@ socket.on("newLocationMessage", function(message) {
   });
 
   $("#messages").append(html);
+  feedback.html("");
   scrollToBottom();
+});
+
+socket.on("isTypingMessage", function(message) {
+  feedback.html(`<p><em>${message.from} is typing...</em></p>`);
+});
+
+messageTextbox.on("keyup", function(e) {
+  if (messageTextbox.val().trim() !== "") {
+    socket.emit("typing", {
+      text: messageTextbox.val()
+    });
+  } else {
+    feedback.html("");
+  }
 });
 
 $("#message-form").on("submit", function(e) {
   e.preventDefault();
-
-  let messageTextbox = $("[name=message]");
 
   socket.emit(
     "createMessage",
