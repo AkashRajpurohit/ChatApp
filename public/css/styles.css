@@ -232,6 +232,19 @@ a {
   color: #999;
 }
 
+.feedback {
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  color: white;
+  transform: translate(0%, 0%);
+}
+
+.mail-feedback {
+  color: violet;
+  text-decoration: none;
+}
+
 @media (max-width: 600px) {
   * {
     font-size: 1rem;
