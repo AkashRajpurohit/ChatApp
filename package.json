@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
     "test": "mocha server/**/*.test.js",
-    "test-watch": "nodemon --exec 'yarn test'"
+    "test-watch": "nodemon --exec yarn test"
   },
   "license": "MIT",
   "dependencies": {
