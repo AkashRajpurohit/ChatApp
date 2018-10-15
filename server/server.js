@@ -75,7 +75,10 @@ io.on("connection", socket => {
 
   socket.on("typing", message => {
     const user = users.getUser(socket.id);
-    if (user && isRealString(message.text)) {
+    if (user) {
+      if (message.text == "") {
+        return socket.broadcast.to(user.room).emit("doneTypingMessage", "done");
+      }
       socket.broadcast
         .to(user.room)
         .emit("isTypingMessage", generateMessage(user.name, message.text));

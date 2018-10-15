@@ -80,14 +80,14 @@ socket.on("isTypingMessage", function(message) {
   feedback.html(`<p><em>${message.from} is typing...</em></p>`);
 });
 
+socket.on("doneTypingMessage", function(message) {
+  feedback.html("");
+});
+
 messageTextbox.on("keyup", function(e) {
-  if (messageTextbox.val().trim() !== "") {
-    socket.emit("typing", {
-      text: messageTextbox.val()
-    });
-  } else {
-    feedback.html("");
-  }
+  socket.emit("typing", {
+    text: messageTextbox.val()
+  });
 });
 
 $("#message-form").on("submit", function(e) {
@@ -102,6 +102,7 @@ $("#message-form").on("submit", function(e) {
       messageTextbox.val("");
     }
   );
+  feedback.html("");
 });
 
 let locationButton = $("#send-location");
