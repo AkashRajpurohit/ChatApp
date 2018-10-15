@@ -58,6 +58,7 @@ io.on("connection", socket => {
         "newMessage",
         generateMessage(user.name, message.text)
       );
+      socket.broadcast.to(user.room).emit("doneTypingMessage", "done");
     }
     callback();
   });
@@ -69,6 +70,7 @@ io.on("connection", socket => {
         "newLocationMessage",
         generateLocationMessage(user.name, coords.latitude, coords.longitude)
       );
+      socket.broadcast.to(user.room).emit("doneTypingMessage", "done");
     }
     callback();
   });
