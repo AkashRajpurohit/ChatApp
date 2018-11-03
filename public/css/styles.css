@@ -214,8 +214,15 @@ a {
   padding: 10px;
 }
 
+#messages {
+  display: flex;
+  flex-direction: column;
+}
+
 .message {
   padding: 10px;
+  width: 100%;
+  display: block;
 }
 
 .message__title {
@@ -223,13 +230,26 @@ a {
   margin-bottom: 5px;
 }
 
-.message__title h4 {
+.message__title h4,
+.self__message__title h4 {
   font-weight: 600;
   margin-right: 10px;
 }
 
-.message__title span {
+.message__title span,
+.self__message__title span {
   color: #999;
+}
+
+.self__message__title {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.self__message__body {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .copyright {
@@ -253,7 +273,7 @@ a {
 }
 
 .mail-feedback {
-  color: rgb(192, 190, 190);
+  color: rgb(243, 193, 193);
   text-decoration: none;
 }
 
@@ -276,5 +296,13 @@ a {
 
   .chat__footer button {
     margin-right: 0px;
+  }
+
+  .copyright h3 {
+    font-size: 20px;
+  }
+
+  .copyright p {
+    font-size: 16px;
   }
 }

@@ -62,6 +62,19 @@ socket.on("newMessage", function(message) {
   scrollToBottom();
 });
 
+socket.on("selfMessage", function(message) {
+  let formattedTime = moment(message.createdAt).format("h:mm a");
+  let template = $("#self-message-template").html();
+  let html = Mustache.render(template, {
+    text: message.text,
+    time: formattedTime
+  });
+
+  $("#messages").append(html);
+  feedback.html("");
+  scrollToBottom();
+});
+
 socket.on("newLocationMessage", function(message) {
   let formattedTime = moment(message.createdAt).format("h:mm a");
   let template = $("#location-message-template").html();
