@@ -205,7 +205,7 @@ a {
 
 .chat__footer input {
   border: none;
-  padding: 10px;
+  padding: 10px !important;
   flex-grow: 1;
 }
 
@@ -219,10 +219,15 @@ a {
   flex-direction: column;
 }
 
-.message {
+.message,
+.self__message {
   padding: 10px;
-  width: 100%;
+  width: 80%;
   display: block;
+}
+
+.self__message {
+  align-self: flex-end;
 }
 
 .message__title {
@@ -230,10 +235,14 @@ a {
   margin-bottom: 5px;
 }
 
-.message__title h4,
-.self__message__title h4 {
+.message__title h4 {
   font-weight: 600;
   margin-right: 10px;
+}
+
+.self__message__title h4 {
+  font-weight: 600;
+  margin-left: 10px;
 }
 
 .message__title span,

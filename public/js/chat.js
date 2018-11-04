@@ -97,26 +97,20 @@ socket.on("doneTypingMessage", function(message) {
   feedback.html("");
 });
 
-messageTextbox.on("keyup", function(e) {
-  socket.emit("typing", {
-    text: messageTextbox.val()
-  });
-});
+// messageTextbox.on("keyup", function(e) {
+//   socket.emit("typing", {
+//     text: messageTextbox.val()
+//   });
+// });
 
-$("#message-form").on("submit", function(e) {
-  e.preventDefault();
-
-  socket.emit(
-    "createMessage",
-    {
-      text: messageTextbox.val()
-    },
-    function() {
-      messageTextbox.val("");
-    }
-  );
-  feedback.html("");
-});
+// $("#message-form").on("submit", function(e) {
+//   e.preventDefault();
+//   console.log(1);
+//   socket.emit("createMessage", {
+//     text: messageTextbox.val()
+//   });
+//   feedback.html("");
+// });
 
 let locationButton = $("#send-location");
 locationButton.on("click", function() {

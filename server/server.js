@@ -51,7 +51,7 @@ io.on("connection", socket => {
     callback();
   });
 
-  socket.on("createMessage", (message, callback) => {
+  socket.on("createMessage", message => {
     const user = users.getUser(socket.id);
     if (user && isRealString(message.text)) {
       socket.broadcast
@@ -61,7 +61,6 @@ io.on("connection", socket => {
 
       socket.broadcast.to(user.room).emit("doneTypingMessage", "done");
     }
-    callback();
   });
 
   socket.on("createLocationMessage", (coords, callback) => {
