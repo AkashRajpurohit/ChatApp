@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chat | ChatApp</title>
-  <link href="/css/libs/emojionearea.css" rel="stylesheet">
   <link href="/css/styles.css" rel="stylesheet">
+  <link href="/css/libs/emojionearea.css" rel="stylesheet">
+
   <link rel="shortcut icon" type="image/x-icon" href="/icon/favicon.ico">
 </head>
 
@@ -33,7 +34,7 @@
   </div>
 
   <script id="message-template" type="text/template">
-    <li class="message">
+    <li class="message talk-bubble tri-right round left-top">
       <div class="message__title">
         <h4>{{from}}</h4>
         <span>{{time}}</span>
@@ -45,10 +46,10 @@
   </script>
 
   <script id="self-message-template" type="text/template">
-    <li class="self__message">
+    <li class="self__message talk-bubble tri-right round right-top">
       <div class="self__message__title">
         <span>{{time}}</span>
-        <h4>Me</h4>
+        <h4>{{from}}</h4>
       </div>
       <div class="self__message__body">
         <p>{{{text}}}</p>
@@ -57,7 +58,7 @@
   </script>
 
   <script id="location-message-template" type="text/template">
-    <li class="message">
+    <li class="message talk-bubble tri-right round left-top">
       <div class="message__title">
         <h4>{{from}}</h4>
         <span>{{time}}</span>
@@ -70,9 +71,22 @@
     </li>
   </script>
 
+  <script id="self-location-message-template" type="text/template">
+    <li class="self__message talk-bubble tri-right round right-top">
+      <div class="self__message__title">
+        <span>{{time}}</span>
+        <h4>{{from}}</h4>
+      </div>
+      <div class="self__message__body">
+        <p>
+          <a href="{{url}}" target="_blank">Check out my location</a>
+        </p>
+      </div>
+    </li>
+  </script>
 
-  <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/jquery-3.3.1.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/moment.js"></script>
   <script src="/js/libs/mustache.js"></script>
   <script src="/js/libs/deparam.js"></script>

@@ -192,12 +192,13 @@ p img.emojioneemoji {
 }
 .emojionearea.emojionearea-inline {
   height: 41px;
+  background-color: #121212;
 }
 .emojionearea.emojionearea-inline > .emojionearea-editor {
   height: 32px;
   min-height: 20px;
   overflow: hidden;
-  white-space: nowrap;
+  color: #ccc8c8;
   position: absolute;
   top: 0;
   left: 12px;

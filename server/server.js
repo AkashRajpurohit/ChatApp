@@ -21,6 +21,10 @@ io.on("connection", socket => {
       return callback("Name and Room are required.");
     }
 
+    if (params.name.trim().length > 15) {
+      return callback("Display name should be less than 15 characters");
+    }
+
     const duplicateName = users.getUserList(params.room);
 
     if (duplicateName.includes(params.name)) {
@@ -40,12 +44,22 @@ io.on("connection", socket => {
       .to(params.room)
       .emit(
         "newMessage",
-        generateMessage("Admin", `${params.name} has Joined.`)
+        generateMessage(
+          "Admin",
+          `${
+            params.name
+          } has joined the party! <img alt="🤩" class="emojioneemoji" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f929.png">`
+        )
       );
 
     socket.emit(
       "newMessage",
-      generateMessage("Admin", "Welcome to the chat app")
+      generateMessage(
+        "Admin",
+        `Hi ${
+          params.name
+        }, Welcome to the ChatApp. Enjoy your time here <img alt="😁" class="emojioneemoji" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f601.png">`
+      )
     );
 
     callback();
@@ -57,7 +71,7 @@ io.on("connection", socket => {
       socket.broadcast
         .to(user.room)
         .emit("newMessage", generateMessage(user.name, message.text));
-      socket.emit("selfMessage", generateMessage(user.name, message.text));
+      socket.emit("selfMessage", generateMessage("Myself", message.text));
 
       socket.broadcast.to(user.room).emit("doneTypingMessage", "done");
     }
@@ -66,9 +80,15 @@ io.on("connection", socket => {
   socket.on("createLocationMessage", (coords, callback) => {
     const user = users.getUser(socket.id);
     if (user) {
-      io.to(user.room).emit(
-        "newLocationMessage",
-        generateLocationMessage(user.name, coords.latitude, coords.longitude)
+      socket.broadcast
+        .to(user.room)
+        .emit(
+          "newLocationMessage",
+          generateLocationMessage(user.name, coords.latitude, coords.longitude)
+        );
+      socket.emit(
+        "selfLocationMessage",
+        generateLocationMessage("Myself", coords.latitude, coords.longitude)
       );
       socket.broadcast.to(user.room).emit("doneTypingMessage", "done");
     }
@@ -94,7 +114,12 @@ io.on("connection", socket => {
       io.to(user.room).emit("updateUserList", users.getUserList(user.room));
       io.to(user.room).emit(
         "newMessage",
-        generateMessage("Admin", `${user.name} has left.`)
+        generateMessage(
+          "Admin",
+          `Looks like ${
+            user.name
+          } just left our party <img alt="🙁" class="emojioneemoji" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f641.png">`
+        )
       );
     }
   });

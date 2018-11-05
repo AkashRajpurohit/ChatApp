@@ -66,6 +66,7 @@ socket.on("selfMessage", function(message) {
   let formattedTime = moment(message.createdAt).format("h:mm a");
   let template = $("#self-message-template").html();
   let html = Mustache.render(template, {
+    from: message.from,
     text: message.text,
     time: formattedTime
   });
@@ -89,6 +90,20 @@ socket.on("newLocationMessage", function(message) {
   scrollToBottom();
 });
 
+socket.on("selfLocationMessage", function(message) {
+  let formattedTime = moment(message.createdAt).format("h:mm a");
+  let template = $("#self-location-message-template").html();
+  let html = Mustache.render(template, {
+    from: message.from,
+    time: formattedTime,
+    url: message.url
+  });
+
+  $("#messages").append(html);
+  feedback.html("");
+  scrollToBottom();
+});
+
 socket.on("isTypingMessage", function(message) {
   feedback.html(`<p><em>${message.from} is typing...</em></p>`);
 });
@@ -96,21 +111,6 @@ socket.on("isTypingMessage", function(message) {
 socket.on("doneTypingMessage", function(message) {
   feedback.html("");
 });
-
-// messageTextbox.on("keyup", function(e) {
-//   socket.emit("typing", {
-//     text: messageTextbox.val()
-//   });
-// });
-
-// $("#message-form").on("submit", function(e) {
-//   e.preventDefault();
-//   console.log(1);
-//   socket.emit("createMessage", {
-//     text: messageTextbox.val()
-//   });
-//   feedback.html("");
-// });
 
 let locationButton = $("#send-location");
 locationButton.on("click", function() {
