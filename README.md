@@ -41,7 +41,32 @@ yarn install
 yarn start
 ```
 
+## With Docker
+
+1. Clone this repository from GitHub onto your local computer.
+
+```sh
+git clone https://github.com/AkashRajpurohit/ChatApp.git
+```
+
+> Note: Make sure you have docker installed and currently running as service
+
+2. Navigate into the project folder.
+```sh
+docker-compose up
+```
+OR to run in detached mode,
+```sh
+docker-compose -d up
+```
+
+---
+
+After following the steps you can start playing around with it.
+
 You can now visit [http://localhost:4200/](http://localhost:4200/)
+
+---
 
 ## Visit my portfolio
 [Akash Rajpurohit](https://akashrajpurohit.cf)
