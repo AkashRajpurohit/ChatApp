@@ -13,7 +13,7 @@ Check out the application live at: https://chatapp-akash.herokuapp.com
 6. Live locations using browser [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 and many more...
 
-## Running the API locally
+## Running the APP locally
 
 ### Prerequisites
 1. NodeJS:
