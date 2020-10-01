@@ -1,5 +1,5 @@
 # ChatApp
-Real time chat application with emojis and live location sharing feature
+A Real time chat application with emojis and live location sharing feature
 
 Check out the application live at: https://chatapp-akash.herokuapp.com
 
